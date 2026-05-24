@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Kliniko — Votre clinique, sans dossiers perdus ni rendez-vous manqués</title>
+<meta name="description" content="Kliniko digitalise votre clinique : dossiers patients, agenda et rendez-vous avec rappels, facturation et encaissement par Mobile Money. Pour cliniques, cabinets et centres de santé. Un produit Atlastech Solution." />
+<meta name="theme-color" content="#0E9488" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --teal:#0E9488; --teal-deep:#0A5F58; --coral:#FF6F61; --coral-deep:#E8543F;
+    --bg:#F2FBFA; --card:#fff; --ink:#10302C; --muted:#5E7B77; --line:#DCEEEB;
+    --shadow:0 24px 60px -28px rgba(10,95,88,.4);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Be Vietnam Pro',sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+  h1,h2,h3{font-family:'Outfit',sans-serif;font-weight:800;line-height:1.08;letter-spacing:-.02em}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 24px}
+  a{text-decoration:none;color:inherit}
+  .anim{opacity:0;transform:translateY(22px);animation:rise .8s cubic-bezier(.2,.7,.3,1) forwards}
+  .d1{animation-delay:.05s}.d2{animation-delay:.18s}.d3{animation-delay:.31s}.d4{animation-delay:.44s}.d5{animation-delay:.57s}
+  @keyframes rise{to{opacity:1;transform:none}}
+  @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+  @keyframes beat{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
+
+  .glyph{width:34px;height:34px;border-radius:10px;background:var(--teal);display:flex;align-items:center;justify-content:center}
+  .glyph svg{width:22px;height:22px}
+
+  nav{position:sticky;top:0;z-index:100;background:rgba(242,251,250,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  .nav-in{display:flex;align-items:center;justify-content:space-between;height:74px}
+  .logo{display:flex;align-items:center;gap:11px;font-family:'Outfit';font-weight:800;font-size:1.55rem;color:var(--teal-deep)}
+  .nav-tag{font-family:'Be Vietnam Pro';font-size:.62rem;font-weight:700;letter-spacing:.10em;text-transform:uppercase;color:var(--muted);border:1px solid var(--line);padding:3px 9px;border-radius:20px}
+  .nav-links{display:flex;align-items:center;gap:28px}
+  .nav-links a{font-weight:600;font-size:.95rem;opacity:.82}
+  .nav-links a:hover{opacity:1;color:var(--teal)}
+  .btn{display:inline-flex;align-items:center;gap:8px;font-family:'Be Vietnam Pro';font-weight:700;font-size:.95rem;padding:12px 22px;border-radius:12px;cursor:pointer;border:none;transition:transform .2s,box-shadow .2s}
+  .btn-primary{background:var(--teal);color:#fff}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 28px -10px rgba(14,148,136,.55)}
+  .btn-ghost{background:#fff;color:var(--teal-deep);border:1.5px solid var(--line)}
+  .btn-ghost:hover{border-color:var(--teal)}
+  .btn-coral{background:var(--coral);color:#fff}
+  .btn-coral:hover{transform:translateY(-2px);box-shadow:0 14px 28px -10px rgba(255,111,97,.6)}
+  @media(max-width:760px){.nav-links a:not(.btn){display:none}}
+
+  .hero{position:relative;padding:74px 0 96px;overflow:hidden}
+  .hero::before{content:"";position:absolute;top:-190px;left:-120px;width:560px;height:560px;border-radius:50%;background:radial-gradient(circle,rgba(255,111,97,.14),transparent 66%)}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center;position:relative}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.78rem;font-weight:700;color:var(--coral-deep);background:rgba(255,111,97,.12);padding:7px 14px;border-radius:30px;margin-bottom:22px}
+  .hero h1{font-size:clamp(2.4rem,5.2vw,3.8rem);color:var(--teal-deep)}
+  .hero h1 .hl{color:var(--coral-deep)}
+  .hero p.sub{font-size:1.18rem;color:var(--muted);margin:22px 0 32px;max-width:520px}
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+  .hero-note{margin-top:18px;font-size:.86rem;color:var(--muted);display:flex;align-items:center;gap:8px}
+  .hero-note b{color:var(--teal-deep)}
+  @media(max-width:860px){.hero-grid{grid-template-columns:1fr;gap:40px}}
+
+  /* patient card */
+  .pcard-v{position:relative;background:#fff;border-radius:24px;padding:24px;box-shadow:var(--shadow);border:1px solid var(--line);max-width:420px;margin:0 auto;width:100%}
+  .ptop{display:flex;align-items:center;gap:13px;padding-bottom:16px;border-bottom:1px solid var(--line)}
+  .ptop .pic{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--teal),var(--teal-deep));color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Outfit';font-weight:700}
+  .ptop .who .n{font-family:'Outfit';font-weight:700;color:var(--teal-deep);font-size:1.05rem}
+  .ptop .who .meta{font-size:.78rem;color:var(--muted)}
+  .ptop .badge{margin-left:auto;font-size:.66rem;font-weight:700;color:var(--teal);background:rgba(14,148,136,.12);padding:4px 9px;border-radius:14px}
+  .pblock{margin-top:16px}
+  .pblock .lbl{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:8px}
+  .appt{display:flex;align-items:center;gap:11px;background:var(--bg);border-radius:13px;padding:12px}
+  .appt .cal{width:38px;height:38px;border-radius:10px;background:#fff;display:flex;align-items:center;justify-content:center;font-size:1.1rem;border:1px solid var(--line)}
+  .appt .info{flex:1}
+  .appt .info .d{font-weight:700;font-size:.9rem;color:var(--ink)}
+  .appt .info .s{font-size:.76rem;color:var(--muted)}
+  .appt .ok{font-size:.68rem;font-weight:700;color:#fff;background:var(--teal);padding:4px 9px;border-radius:14px}
+  .pay{display:flex;align-items:center;justify-content:space-between;margin-top:12px;padding:12px;border-radius:13px;background:rgba(255,111,97,.08)}
+  .pay .t{font-size:.85rem;color:var(--ink);font-weight:600}
+  .pay .v{font-family:'Outfit';font-weight:800;color:var(--coral-deep)}
+  .reminder{margin-top:12px;font-size:.8rem;color:var(--teal-deep);font-weight:600;display:flex;align-items:center;gap:8px}
+  .chip-f{position:absolute;background:#fff;border-radius:13px;padding:10px 14px;box-shadow:var(--shadow);font-size:.8rem;font-weight:700;color:var(--teal-deep);display:flex;align-items:center;gap:8px}
+  .chip-f.a{top:12%;right:-36px;animation:floaty 4s ease-in-out infinite}
+  .chip-f.b{bottom:16%;left:-32px;animation:floaty 4s ease-in-out infinite .9s}
+  .chip-f .hb{display:inline-block;animation:beat 1.3s infinite;color:var(--coral)}
+  @media(max-width:520px){.chip-f{display:none}}
+
+  section.block{padding:84px 0}
+  .stitle{text-align:center;max-width:700px;margin:0 auto 52px}
+  .stitle .kick{font-size:.8rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--coral-deep);margin-bottom:12px}
+  .stitle h2{font-size:clamp(1.9rem,3.8vw,2.7rem);color:var(--teal-deep)}
+  .stitle p{color:var(--muted);font-size:1.08rem;margin-top:14px}
+
+  .pain{background:var(--teal-deep);color:#cfe7e3}
+  .pain .stitle h2{color:#fff}.pain .stitle p{color:#a9ccc7}.pain .stitle .kick{color:var(--coral)}
+  .pgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+  .paincard{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:26px}
+  .paincard .ic{font-size:1.6rem;margin-bottom:12px}
+  .paincard h3{font-size:1.05rem;color:#fff;margin-bottom:8px;font-weight:700}
+  .paincard p{font-size:.91rem;color:#a9ccc7}
+  @media(max-width:860px){.pgrid{grid-template-columns:1fr 1fr}}
+  @media(max-width:520px){.pgrid{grid-template-columns:1fr}}
+
+  .fgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .fcard{background:#fff;border:1px solid var(--line);border-radius:20px;padding:30px;transition:transform .25s,box-shadow .25s}
+  .fcard:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+  .fcard .ic{width:50px;height:50px;border-radius:14px;background:rgba(14,148,136,.1);display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:18px}
+  .fcard h3{font-size:1.2rem;color:var(--teal-deep);margin-bottom:10px}
+  .fcard p{color:var(--muted);font-size:.95rem}
+  @media(max-width:860px){.fgrid{grid-template-columns:1fr}}
+
+  .cross{background:linear-gradient(120deg,var(--teal),var(--teal-deep));color:#fff;border-radius:28px;padding:48px;display:grid;grid-template-columns:1.4fr 1fr;gap:34px;align-items:center;position:relative;overflow:hidden}
+  .cross::after{content:"";position:absolute;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(255,111,97,.3),transparent 70%);top:-80px;right:-40px}
+  .cross h2{font-size:clamp(1.7rem,3.4vw,2.3rem);color:#fff;position:relative}
+  .cross p{color:#c4e3df;margin-top:14px;position:relative}
+  .cross .vx{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:18px;padding:24px;text-align:center;position:relative}
+  .cross .vx .big{font-family:'Outfit';font-weight:800;font-size:1.4rem;color:#fff}
+  .cross .vx .sub{font-size:.85rem;color:#c4e3df;margin-top:6px}
+  @media(max-width:760px){.cross{grid-template-columns:1fr;padding:36px}}
+
+  .sectors{padding:60px 0}
+  .chips{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
+  .chip{background:#fff;border:1px solid var(--line);border-radius:40px;padding:11px 20px;font-weight:600;color:var(--teal-deep);display:flex;align-items:center;gap:8px}
+
+  .cta{background:var(--teal);color:#fff;border-radius:30px;padding:64px 40px;text-align:center;position:relative;overflow:hidden}
+  .cta::before{content:"";position:absolute;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(255,111,97,.3),transparent 70%);bottom:-120px;left:-60px}
+  .cta h2{font-size:clamp(2rem,4vw,2.6rem);position:relative}
+  .cta p{color:#c4e3df;margin:16px auto 28px;max-width:540px;position:relative}
+
+  footer{padding:50px 0 40px;text-align:center}
+  footer .logo{justify-content:center;margin-bottom:14px}
+  footer .legal{font-size:.82rem;color:var(--muted);max-width:660px;margin:0 auto 16px}
+  footer .meta{font-size:.85rem;color:var(--muted)}
+  footer a{color:var(--teal-deep);font-weight:700}
+</style>
+</head>
+<body>
+
+<nav><div class="wrap nav-in">
+  <a class="logo" href="#"><span class="glyph"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h4l2-6 4 12 2-6h8"/></svg></span>Kliniko<span class="nav-tag">par Atlastech</span></a>
+  <div class="nav-links">
+    <a href="#solution">La solution</a>
+    <a href="#secteurs">Pour qui</a>
+    <a href="#contact" class="btn btn-primary">Demander une démo</a>
+  </div>
+</div></nav>
+
+<header class="hero"><div class="wrap hero-grid">
+  <div>
+    <span class="eyebrow anim d1">● Cliniques · Cabinets · Centres de santé</span>
+    <h1 class="anim d2">Votre clinique, <span class="hl">sans dossiers perdus</span> ni rendez-vous manqués.</h1>
+    <p class="sub anim d3">Kliniko réunit dossiers patients, rendez-vous et facturation au même endroit. Rappels automatiques pour réduire les absences, encaissement par Mobile Money, et tout l'historique d'un patient en un clic.</p>
+    <div class="hero-cta anim d4">
+      <a href="#contact" class="btn btn-primary">Demander une démo →</a>
+      <a href="#solution" class="btn btn-ghost">Voir comment ça marche</a>
+    </div>
+    <div class="hero-note anim d5">🩺 <span><b>Pensé pour le terrain.</b> Simple à utiliser, même pour une petite équipe soignante.</span></div>
+  </div>
+
+  <div class="pcard-v anim d3">
+    <div class="chip-f a"><span class="hb">♥</span> Rappel envoyé</div>
+    <div class="chip-f b">💳 Encaissé via MoMo</div>
+    <div class="ptop">
+      <div class="pic">AE</div>
+      <div class="who"><div class="n">Aïcha Etoa</div><div class="meta">Dossier n° P-0428 · 34 ans</div></div>
+      <span class="badge">Suivi</span>
+    </div>
+    <div class="pblock">
+      <div class="lbl">Prochain rendez-vous</div>
+      <div class="appt">
+        <div class="cal">📅</div>
+        <div class="info"><div class="d">Jeudi 28 — 10:30</div><div class="s">Consultation · Dr. Manga</div></div>
+        <span class="ok">Confirmé</span>
+      </div>
+    </div>
+    <div class="pay"><span class="t">Consultation</span><span class="v">10 000 FCFA ✓</span></div>
+    <div class="reminder">🔔 Rappel SMS envoyé la veille — moins d'absences.</div>
+  </div>
+</div></header>
+
+<section class="block pain">
+  <div class="wrap">
+    <div class="stitle">
+      <div class="kick">Le quotidien d'une clinique</div>
+      <h2>Trop de temps perdu loin des patients.</h2>
+    </div>
+    <div class="pgrid">
+      <div class="paincard"><div class="ic">🗂️</div><h3>Des dossiers papier</h3><p>Fiches dispersées, illisibles ou égarées : on perd l'historique du patient quand on en a besoin.</p></div>
+      <div class="paincard"><div class="ic">📭</div><h3>Des rendez-vous manqués</h3><p>Sans rappel, les patients oublient. Des créneaux perdus, un planning désorganisé.</p></div>
+      <div class="paincard"><div class="ic">🧾</div><h3>Une facturation laborieuse</h3><p>Encaissements en espèces, reçus manuels, comptes difficiles à boucler en fin de journée.</p></div>
+      <div class="paincard"><div class="ic">📉</div><h3>Aucun pilotage</h3><p>Pas de vue claire sur l'activité, les patients reçus ou les recettes de la clinique.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="solution">
+  <div class="wrap">
+    <div class="stitle">
+      <div class="kick">La solution Kliniko</div>
+      <h2>Toute la clinique, simplement gérée.</h2>
+    </div>
+    <div class="fgrid">
+      <div class="fcard"><div class="ic">🗃️</div><h3>Dossier patient numérique</h3><p>Antécédents, consultations, traitements, documents : tout l'historique d'un patient réuni et accessible en un clic.</p></div>
+      <div class="fcard"><div class="ic">📅</div><h3>Agenda &amp; rendez-vous</h3><p>Un planning clair pour toute l'équipe, avec prise de rendez-vous fluide et sans chevauchement.</p></div>
+      <div class="fcard"><div class="ic">🔔</div><h3>Rappels automatiques</h3><p>Un SMS rappelle le rendez-vous au patient. Les absences chutent, vos créneaux se remplissent.</p></div>
+      <div class="fcard"><div class="ic">💳</div><h3>Facturation &amp; encaissement MoMo</h3><p>Facturez la consultation et encaissez par Mobile Money. Reçus automatiques, caisse toujours juste.</p></div>
+      <div class="fcard"><div class="ic">💊</div><h3>Ordonnances</h3><p>Rédigez et imprimez les ordonnances proprement, rattachées au dossier du patient.</p></div>
+      <div class="fcard"><div class="ic">📊</div><h3>Tableau de bord</h3><p>Patients reçus, rendez-vous, recettes : pilotez votre activité d'un coup d'œil.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="block"><div class="wrap"><div class="cross">
+  <div>
+    <div class="stitle" style="text-align:left;margin:0;max-width:none">
+      <div class="kick" style="color:#ffd9d3">Mieux ensemble</div>
+      <h2>Kliniko + Fileo + VoxEcho : le parcours patient complet.</h2>
+      <p>Le patient prend son ticket et attend sans stress avec <b>Fileo</b>, il est soigné et facturé dans <b>Kliniko</b>, puis donne son avis via <b>VoxEcho</b>. Trois produits Atlastech qui couvrent tout le parcours, de l'accueil à la satisfaction.</p>
+    </div>
+  </div>
+  <div class="vx">
+    <div class="big">Fileo → Kliniko → VoxEcho</div>
+    <div class="sub">De la salle d'attente au dossier soigné, jusqu'à l'avis du patient.</div>
+  </div>
+</div></div></section>
+
+<section class="block sectors" id="secteurs">
+  <div class="wrap">
+    <div class="stitle" style="margin-bottom:32px">
+      <div class="kick">Pour qui</div>
+      <h2>Pensé pour les structures de soins d'Afrique.</h2>
+    </div>
+    <div class="chips">
+      <div class="chip">🏥 Cliniques privées</div>
+      <div class="chip">🩺 Cabinets médicaux</div>
+      <div class="chip">🦷 Cabinets dentaires</div>
+      <div class="chip">🏨 Centres de santé</div>
+      <div class="chip">🔬 Laboratoires &amp; spécialistes</div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="contact"><div class="wrap"><div class="cta">
+  <h2>Consacrez votre temps aux patients, pas à la paperasse.</h2>
+  <p>Découvrez Kliniko sur une démonstration adaptée à votre structure. Première démo et accompagnement gratuits.</p>
+  <a href="mailto:contact@atlastech.cm?subject=Démo%20Kliniko&body=Bonjour,%20je%20gère%20une%20clinique%20ou%20un%20cabinet%20et%20souhaite%20une%20démonstration%20de%20Kliniko." class="btn btn-coral">Demander une démo gratuite →</a>
+</div></div></section>
+
+<footer><div class="wrap">
+  <a class="logo" href="#"><span class="glyph"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h4l2-6 4 12 2-6h8"/></svg></span>Kliniko</a>
+  <p class="legal">Kliniko est un logiciel de gestion de clinique et de cabinet médical édité par Atlastech Solution. Les paiements transitent par Mobile Money via un prestataire agréé.</p>
+  <p class="meta">Un produit <b>Atlastech Solution</b> · Douala, Cameroun · <a href="mailto:contact@atlastech.cm">contact@atlastech.cm</a></p>
+</div></footer>
+
+</body>
+</html>
